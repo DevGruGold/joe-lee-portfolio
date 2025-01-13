@@ -21,20 +21,33 @@ const Chat = () => {
   const { toast } = useToast();
   const sessionId = useRef(Date.now().toString());
 
+  useEffect(() => {
+    // Initialize EmailJS
+    emailjs.init("YOUR_PUBLIC_KEY");
+  }, []);
+
   const sendEmailLog = async (chatLog: Message[]) => {
     try {
-      await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+      const response = await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
         {
           to_email: 'xmrtsolutions@gmail.com',
           chat_log: chatLog.map(msg => `${msg.timestamp} - ${msg.role}: ${msg.content}`).join('\n'),
           session_id: sessionId.current,
-        },
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        }
       );
+
+      if (response.status === 200) {
+        console.log('Email sent successfully');
+      }
     } catch (error) {
       console.error('Email sending failed:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send chat log. Please try again later.",
+        variant: "destructive",
+      });
     }
   };
 
