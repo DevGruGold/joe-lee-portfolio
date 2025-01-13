@@ -1,0 +1,125 @@
+import React, { useState, useRef, useEffect } from 'react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useToast } from "@/components/ui/use-toast";
+import emailjs from '@emailjs/browser';
+import { Send } from "lucide-react";
+
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: string;
+}
+
+const Chat = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
+  const sessionId = useRef(Date.now().toString());
+
+  const sendEmailLog = async (chatLog: Message[]) => {
+    try {
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        {
+          to_email: 'xmrtsolutions@gmail.com',
+          chat_log: chatLog.map(msg => `${msg.timestamp} - ${msg.role}: ${msg.content}`).join('\n'),
+          session_id: sessionId.current,
+        },
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+    } catch (error) {
+      console.error('Email sending failed:', error);
+    }
+  };
+
+  const addMessage = (role: 'user' | 'assistant', content: string) => {
+    const newMessage = {
+      role,
+      content,
+      timestamp: new Date().toLocaleTimeString(),
+    };
+    setMessages(prev => [...prev, newMessage]);
+    return newMessage;
+  };
+
+  const handleSend = async () => {
+    if (!input.trim()) return;
+    
+    setIsLoading(true);
+    const userMessage = addMessage('user', input);
+    setInput('');
+
+    // Simulate Joe's response (replace this with actual AI integration if needed)
+    setTimeout(() => {
+      const response = "Hey there! Joe here from La Fortuna. Thanks for reaching out! If you're interested in Web3 consulting, shoot me an email at xmrtsolutions@gmail.com. For anything else, you can catch me on WhatsApp at +50661500559. What's on your mind?";
+      const assistantMessage = addMessage('assistant', response);
+      
+      // Send email log after assistant responds
+      sendEmailLog([...messages, userMessage, assistantMessage]);
+      setIsLoading(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    if (scrollAreaRef.current) {
+      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+    }
+  }, [messages]);
+
+  return (
+    <div className="fixed bottom-4 right-4 w-80 bg-white rounded-lg shadow-lg border border-gray-200">
+      <div className="p-4 border-b border-gray-200">
+        <h3 className="font-semibold">Chat with Joe</h3>
+      </div>
+      
+      <ScrollArea className="h-96 p-4" ref={scrollAreaRef}>
+        <div className="space-y-4">
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+            >
+              <div
+                className={`max-w-[80%] rounded-lg p-3 ${
+                  message.role === 'user'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-100 text-gray-900'
+                }`}
+              >
+                <p className="text-sm">{message.content}</p>
+                <span className="text-xs opacity-70">{message.timestamp}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ScrollArea>
+
+      <div className="p-4 border-t border-gray-200">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSend();
+          }}
+          className="flex gap-2"
+        >
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type a message..."
+            disabled={isLoading}
+          />
+          <Button type="submit" size="icon" disabled={isLoading}>
+            <Send className="h-4 w-4" />
+          </Button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Chat;
