@@ -83,11 +83,11 @@ const Chat = () => {
   }, [messages]);
 
   return (
-    <>
+    <div className="fixed bottom-4 right-4 z-50">
       {!isOpen && (
         <Button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 right-4 rounded-full shadow-lg bg-ocean hover:bg-ocean-light"
+          className="rounded-full shadow-lg bg-ocean hover:bg-ocean-light"
           size="icon"
         >
           <MessageCircle className="h-5 w-5" />
@@ -95,15 +95,15 @@ const Chat = () => {
       )}
       
       {isOpen && (
-        <div className="fixed bottom-4 right-4 w-80 bg-white rounded-lg shadow-lg border border-gray-200 animate-fadeIn">
-          <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-            <h3 className="font-semibold">Chat with Joe</h3>
-            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+        <div className="w-80 h-[400px] bg-white rounded-lg shadow-lg border border-gray-200 animate-fadeIn flex flex-col">
+          <div className="p-3 border-b border-gray-200 flex justify-between items-center">
+            <h3 className="font-semibold text-sm">Chat with Joe</h3>
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-8 w-8">
               <X className="h-4 w-4" />
             </Button>
           </div>
           
-          <ScrollArea className="h-96 p-4" ref={scrollAreaRef}>
+          <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
             <div className="space-y-4">
               {messages.map((message, index) => (
                 <div
@@ -125,7 +125,7 @@ const Chat = () => {
             </div>
           </ScrollArea>
 
-          <div className="p-4 border-t border-gray-200">
+          <div className="p-3 border-t border-gray-200">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -138,15 +138,16 @@ const Chat = () => {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type a message..."
                 disabled={isLoading}
+                className="text-sm"
               />
-              <Button type="submit" size="icon" disabled={isLoading}>
+              <Button type="submit" size="icon" disabled={isLoading} className="h-9 w-9">
                 <Send className="h-4 w-4" />
               </Button>
             </form>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
