@@ -17,20 +17,35 @@ const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isConfigured, setIsConfigured] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const sessionId = useRef(Date.now().toString());
 
   useEffect(() => {
-    // Initialize EmailJS
-    emailjs.init("YOUR_PUBLIC_KEY");
+    // Check if EmailJS is configured
+    const publicKey = localStorage.getItem('emailjs_public_key');
+    if (publicKey) {
+      emailjs.init(publicKey);
+      setIsConfigured(true);
+    } else {
+      console.warn('EmailJS not configured. Chat logs will not be sent.');
+    }
   }, []);
 
   const sendEmailLog = async (chatLog: Message[]) => {
     try {
+      const serviceId = localStorage.getItem('emailjs_service_id');
+      const templateId = localStorage.getItem('emailjs_template_id');
+      
+      if (!serviceId || !templateId) {
+        console.warn('EmailJS service ID or template ID not configured');
+        return;
+      }
+
       const response = await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        serviceId,
+        templateId,
         {
           to_email: 'xmrtsolutions@gmail.com',
           chat_log: chatLog.map(msg => `${msg.timestamp} - ${msg.role}: ${msg.content}`).join('\n'),
@@ -71,7 +86,9 @@ const Chat = () => {
     setTimeout(() => {
       const response = "Hey there! Joe here from La Fortuna. Thanks for reaching out! If you're interested in Web3 consulting, shoot me an email at xmrtsolutions@gmail.com. For anything else, you can catch me on WhatsApp at +50661500559. What's on your mind?";
       const assistantMessage = addMessage('assistant', response);
-      sendEmailLog([...messages, userMessage, assistantMessage]);
+      if (isConfigured) {
+        sendEmailLog([...messages, userMessage, assistantMessage]);
+      }
       setIsLoading(false);
     }, 1000);
   };
