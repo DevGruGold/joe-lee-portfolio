@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -37,7 +38,7 @@ const About = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Now based in the beautiful La Fortuna, Costa Rica, I'm leading Project Estrella, a groundbreaking DAO initiative, while building and consulting on various Web3 projects. My work combines cutting-edge blockchain technology with practical, user-focused solutions.
+                Now based in the beautiful La Fortuna, Costa Rica, I'm leading XMRT.io, a groundbreaking DAO initiative, while building and consulting on various Web3 projects. My work combines cutting-edge blockchain technology with practical, user-focused solutions.
               </p>
             </CardContent>
           </Card>

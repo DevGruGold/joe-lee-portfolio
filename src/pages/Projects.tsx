@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,10 +7,10 @@ import { ExternalLink, Github } from "lucide-react";
 const Projects = () => {
   const projects = [
     {
-      title: "Project Estrella DAO",
+      title: "XMRT.io",
       description: "A decentralized autonomous organization built on the blockchain, facilitating community-driven decision making and resource allocation.",
-      link: "https://xmrtdao.vercel.app",
-      github: "https://github.com/yourusername/project-estrella",
+      link: "https://xmrt.io",
+      github: "https://github.com/yourusername/xmrt-io",
       tags: ["Web3", "Solidity", "React", "TypeScript"]
     },
     {
