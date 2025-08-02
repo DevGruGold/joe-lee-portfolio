@@ -1,69 +1,48 @@
-# Welcome to your Lovable project
+# Joe Lee - Web3 Developer Portfolio
 
-## Project info
+Portfolio website for Joe Lee, a Harvard-educated former Marine turned Web3 Developer based in Costa Rica.
 
-**URL**: https://lovable.dev/projects/0d6d2dc7-b25a-43b9-94c2-f2dbb3d670bd
+## About This Project
 
-## How can I edit this code?
+This is a professional portfolio showcasing Joe Lee's journey from military service to Web3 development, featuring his current projects including XMRT.io DAO and Mobile Monero dApps.
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+- React & TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- shadcn-ui component library
+- React Router for navigation
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0d6d2dc7-b25a-43b9-94c2-f2dbb3d670bd) and start prompting.
+## Featured Projects
 
-Changes made via Lovable will be committed automatically to this repo.
+- **XMRT.io** - A decentralized autonomous organization built on blockchain
+- **Mobile Monero dApps** - Privacy-focused cryptocurrency applications
 
-**Use your preferred IDE**
+## Development
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+To run locally:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
+# Clone the repository
 git clone <YOUR_GIT_URL>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to project directory
+cd joe-lee-portfolio
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Contact
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Email**: joe@xmrt.io
+- **WhatsApp**: +506 8458 2475
+- **Location**: La Fortuna, Costa Rica
 
-**Use GitHub Codespaces**
+## Deployment
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0d6d2dc7-b25a-43b9-94c2-f2dbb3d670bd) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+This project can be deployed via [Lovable](https://lovable.dev) or any static hosting service like Netlify or Vercel.
