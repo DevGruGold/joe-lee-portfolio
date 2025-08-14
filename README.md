@@ -39,10 +39,9 @@ npm run dev
 
 ## Contact
 
-- **Email**: joe@xmrt.io
 - **WhatsApp**: +506 8458 2475
 - **Location**: La Fortuna, Costa Rica
 
 ## Deployment
 
-This project can be deployed via [Lovable](https://lovable.dev) or any static hosting service like Netlify or Vercel.
+This project can be deployed via any static hosting service like Netlify or Vercel.
