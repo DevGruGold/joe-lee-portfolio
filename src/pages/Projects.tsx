@@ -9,15 +9,15 @@ const Projects = () => {
     {
       title: "XMRT.io",
       description: "A decentralized autonomous organization built on the blockchain, facilitating community-driven decision making and resource allocation.",
-      link: "https://xmrt.io",
-      github: "https://github.com/yourusername/xmrt-io",
+      link: "https://xmrt.vercel.app",
+      github: "https://github.com/DevGruGold/XMRT-Ecosystem",
       tags: ["Web3", "Solidity", "React", "TypeScript"]
     },
     {
-      title: "Mobile Monero dApps",
+      title: "XMRT DAO Ecosystem dApps",
       description: "A collection of decentralized applications showcasing the potential of privacy-focused cryptocurrency technologies.",
       link: "https://mobilemonero.com/dapps",
-      github: "https://github.com/yourusername/mobile-monero",
+      github: "https://github.com/DevGruGold/mobilemonero",
       tags: ["Monero", "Privacy", "Blockchain", "dApps"]
     }
   ];
